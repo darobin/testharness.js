@@ -1078,20 +1078,24 @@ policies and contribution forms [3].
         forEach(ancestor_windows(),
                 function(w)
                 {
-                    if(w.start_callback)
+                    try 
                     {
-                        try
+                        if(w.start_callback)
                         {
-                            w.start_callback(this_obj.properties);
-                        }
-                        catch(e)
-                        {
-                            if (debug)
+                            try
                             {
-                                throw(e);
+                                w.start_callback(this_obj.properties);
+                            }
+                            catch(e)
+                            {
+                                if (debug)
+                                {
+                                    throw(e);
+                                }
                             }
                         }
                     }
+                    catch (e) {}
                 });
     };
 
@@ -1118,19 +1122,23 @@ policies and contribution forms [3].
         forEach(ancestor_windows(),
                 function(w)
                 {
-                    if(w.result_callback)
+                    try
                     {
-                        try
+                        if(w.result_callback)
                         {
-                            w.result_callback(test);
-                        }
-                        catch(e)
-                        {
-                            if(debug) {
-                                throw e;
+                            try
+                            {
+                                w.result_callback(test);
+                            }
+                            catch(e)
+                            {
+                                if(debug) {
+                                    throw e;
+                                }
                             }
                         }
                     }
+                    catch (e) {}
                 });
         this.processing_callbacks = false;
         if (this_obj.all_done())
@@ -1165,20 +1173,24 @@ policies and contribution forms [3].
         forEach(ancestor_windows(),
                 function(w)
                 {
-                    if(w.completion_callback)
+                    try 
                     {
-                        try
+                        if(w.completion_callback)
                         {
-                            w.completion_callback(this_obj.tests, this_obj.status);
-                        }
-                        catch(e)
-                        {
-                            if (debug)
+                            try
                             {
-                                throw e;
+                                w.completion_callback(this_obj.tests, this_obj.status);
+                            }
+                            catch(e)
+                            {
+                                if (debug)
+                                {
+                                    throw e;
+                                }
                             }
                         }
                     }
+                    catch (e) {}
                 });
     };
 
